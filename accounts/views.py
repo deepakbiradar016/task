@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render
 import json
 from . models import JsonData
 from django.contrib import messages
@@ -12,23 +12,26 @@ def upload_file(request):
 
 def record_list(request):
 
+    # Reading uploaded file
     if request.method == 'POST':
         x = request.FILES['data']
         json_data = json.load(x)
 
+        # Validation for the content of the file
         for data in json_data:
             if set(data.keys()) != {'userId', 'id', 'title', 'body'}:
                 messages.warning(request, "Data not in proper format")
                 return render(request, 'accounts/upload_file.html')
 
+        # validating for duplicate records
         query = JsonData.objects.all()
         if query.exists():
-            query_id = []
+            id_list = []
             for q in query:
-                query_id.append(q.id)
+                id_list.append(q.id)
 
             for data in json_data:
-                if not data['id'] in query_id:
+                if not data['id'] in id_list:
                     obj = JsonData()
                     obj.userId = data['userId']
                     obj.id = data['id']
