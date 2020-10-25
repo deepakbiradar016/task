@@ -16,23 +16,20 @@ def record_list(request):
         x = request.FILES['data']
         json_data = json.load(x)
 
+        for data in json_data:
+            if set(data.keys()) != {'userId', 'id', 'title', 'body'}:
+                messages.warning(request, "Data not in proper format")
+                return render(request, 'accounts/upload_file.html')
+
         query = JsonData.objects.all()
+
+        print(query[0].id, json_data[0]['id'], 'qqqqqqqqqqq')
 
         if query.exists():
             for data in json_data:
                 for q in query:
-                    print(q.id,'yesssssssssssssssssssssssss')
-            # for q in query:
-            #     for data in json_data:
-            #         if q.userId == data['userId'] and q.json_id == data['id'] and q.title == data['title'] and q.body == data['body']:
-            #             continue
-            #         else:
-            #             obj = JsonData()
-            #             obj.userId = data['userId']
-            #             obj.id = data['id']
-            #             obj.title = data['title']
-            #             obj.body = data['body']
-            #             obj.save()
+                    pass
+
         else:
             for data in json_data:
                 obj = JsonData()
@@ -46,6 +43,24 @@ def record_list(request):
 
     fetch_data = JsonData.objects.all()
     return render(request, 'accounts/record_list.html', {"fetch_data": fetch_data})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # obj = JsonData()
 # obj.user = request.user

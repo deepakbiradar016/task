@@ -21,7 +21,15 @@
             </li>
             {% else %}
 
-
+            {% if request.path == '/accounts/record-list/' %}
+            <li class="nav-item mx-1">
+                <a href="{% url 'upload_file' %}" class="btn btn-dark my-1">Upload</a>
+            </li>
+            {% elif request.path == '/accounts/upload-file/' %}
+            <li class="nav-item mx-1">
+                <a href="{% url 'record_list' %}" class="btn btn-dark my-1">Record List</a>
+            </li>
+            {% endif %}
             <li class="nav-item mx-1">
                 <a href="{% url 'account_logout' %}" class="btn btn-dark my-1"> Sign Out</a>
             </li>

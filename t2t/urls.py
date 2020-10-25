@@ -9,8 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', TemplateView.as_view(template_name="login.html")),
-    path('accounts/upload-file/', upload_file),
-    path('accounts/record-list/', record_list, name='record_list')
+    path('accounts/upload-file/', upload_file, name="upload_file"),
+    path('accounts/record-list/', record_list, name="record_list")
 
 ]
 
