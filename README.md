@@ -1,3 +1,3 @@
-## Tolet 2 Tenant Platform
+## Financepeer Assessment test
 
-This platform is to manage the countrywide property management and tenant management. 
+

@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
 
     # providers
     'allauth.socialaccount.providers.google',
 
 ]
 SITE_ID = 1
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 AUTHENTICATION_BACKENDS = [

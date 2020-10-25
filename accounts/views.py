@@ -22,13 +22,19 @@ def record_list(request):
                 return render(request, 'accounts/upload_file.html')
 
         query = JsonData.objects.all()
-
-        print(query[0].id, json_data[0]['id'], 'qqqqqqqqqqq')
-
         if query.exists():
+            query_id = []
+            for q in query:
+                query_id.append(q.id)
+
             for data in json_data:
-                for q in query:
-                    pass
+                if not data['id'] in query_id:
+                    obj = JsonData()
+                    obj.userId = data['userId']
+                    obj.id = data['id']
+                    obj.title = data['title']
+                    obj.body = data['body']
+                    obj.save()
 
         else:
             for data in json_data:
@@ -43,30 +49,3 @@ def record_list(request):
 
     fetch_data = JsonData.objects.all()
     return render(request, 'accounts/record_list.html', {"fetch_data": fetch_data})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# obj = JsonData()
-# obj.user = request.user
-# obj.userId = data['userId']
-# obj.json_id = data['id']
-# obj.title = data['title']
-# obj.body = data['body']
-# obj.save()
-# return redirect("/")
