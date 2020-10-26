@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import json
 from . models import JsonData
 from django.contrib import messages
-
+from django.views.generic import ListView
 # Create your views here.
 
 
@@ -50,5 +50,13 @@ def record_list(request):
 
         messages.info(request, "Data stored successfully")
 
-    fetch_data = JsonData.objects.all()
-    return render(request, 'accounts/record_list.html', {"fetch_data": fetch_data})
+    # fetch_data = JsonData.objects.all()
+    return redirect('/accounts/record-list2/')
+
+
+class RecordList(ListView):
+    model = JsonData
+    template_name = 'accounts/record_list.html'
+    queryset = JsonData.objects.all()
+    paginate_by = 30
+
