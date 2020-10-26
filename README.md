@@ -14,6 +14,8 @@ Steps to run:
 
 5. pip install requirements.txt
 
-6. python manage.py migrate
+6. provide your PostgreSQL credentials in 'financepeer/settings/dev.py' or for quick testing you can use SQLite3 which is commented in the same dev.py file
 
-7. python manage.py runserver 
+7. python manage.py migrate
+
+8. python manage.py runserver 
