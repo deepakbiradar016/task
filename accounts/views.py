@@ -1,15 +1,19 @@
 from django.shortcuts import render, redirect
 import json
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . models import JsonData
 from django.contrib import messages
 from django.views.generic import ListView
 # Create your views here.
 
 
+@login_required
 def upload_file(request):
     return render(request, 'accounts/upload_file.html')
 
-
+@login_required
 def record_list(request):
 
     # Reading uploaded file
@@ -21,7 +25,7 @@ def record_list(request):
         for data in json_data:
             if set(data.keys()) != {'userId', 'id', 'title', 'body'}:
                 messages.warning(request, "Data not in proper format")
-                return render(request, 'accounts/upload_file.html')
+                return redirect('/accounts/upload-file/')
 
         # validating for duplicate records
         query = JsonData.objects.all()
@@ -54,7 +58,7 @@ def record_list(request):
     return redirect('/accounts/record-list2/')
 
 
-class RecordList(ListView):
+class RecordList(LoginRequiredMixin, ListView):
     model = JsonData
     template_name = 'accounts/record_list.html'
     queryset = JsonData.objects.all()
