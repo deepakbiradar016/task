@@ -4,5 +4,14 @@
 
 {% block content %}
 
-
+<div class="container my-4">
+    <div class="jumbotron">
+      <h2>Hello, Finamcepeer!</h2>
+      <p class="lead">This is a simple Django Application with a user authentication system
+          <p class="lead">where user can upload JSON file to database and data will be displayed to the user </p>
+      <hr class="my-4">
+        You con upload file from
+        <a href="{% url 'upload_file' %}">here</a>
+    </div>
+</div>
 {% endblock %}
