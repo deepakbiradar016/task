@@ -11,7 +11,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="home.html")),
     path('accounts/upload-file/', upload_file, name="upload_file"),
     path('accounts/record-list/', record_list, name="record_list"),
-    path('accounts/record-list2/', RecordList.as_view(), name= "record_list2")
+    path('accounts/record-list2/', RecordList.as_view(), name="record_list2")
 ]
 
 if settings.DEBUG:
