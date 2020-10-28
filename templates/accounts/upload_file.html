@@ -22,7 +22,7 @@
         <div class="container mt-5">
         <div class="d-flex justify-content-center">
         <div class="card p-3 " style="width: 30rem; padding:2rem;">
-    <form class="form-signin" method="post" action="{% url 'record_list2' %}" enctype="multipart/form-data">
+    <form class="form-signin" method="post" action="{% url 'record_list' %}" enctype="multipart/form-data">
 
       <h1 class="h3 mb-3 font-weight-normal">Upload Json File</h1>
       {% csrf_token %}
