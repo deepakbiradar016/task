@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
-import json
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from . models import JsonData
 from django.contrib import messages
 from django.views.generic import ListView
-# Create your views here.
+import json
 
 
 @login_required
@@ -35,9 +33,6 @@ class RecordList(LoginRequiredMixin, ListView):
         query = JsonData.objects.all()
         if query.exists():
             id_list = [q.id for q in query]
-            # id_list = []
-            # for q in query:
-            #     id_list.append(q.id)
 
             for data in json_data:
                 if not data['id'] in id_list:
